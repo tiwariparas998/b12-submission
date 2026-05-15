@@ -1,0 +1,31 @@
+name: B12 Submission
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  submit:
+    runs-on: ubuntu-latest
+
+    env:
+      APPLICANT_NAME: "Paras Tiwari"
+      APPLICANT_EMAIL: "tiwariparas998@gmail.com"
+      RESUME_LINK: "https://drive.google.com/file/d/1Tp1iFMUy1e-Cqt7cu9wTjKdTPnuHHAs6/view?usp=sharing"
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run submission
+        run: python submit.py
